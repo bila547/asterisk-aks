@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: asterisk
+  namespace: asterisk
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: asterisk
+  template:
+    metadata:
+      labels:
+        app: asterisk
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - asterisk
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: asterisk
+        image: mlan/asterisk:mini
+        ports:
+        - containerPort: 5060
+          protocol: UDP
+        - containerPort: 5060
+          protocol: TCP
+        - containerPort: 10000
+          protocol: UDP
+        - containerPort: 20000
+          protocol: UDP
+        volumeMounts:
+        - name: config
+          mountPath: /etc/asterisk
+      volumes:
+      - name: config
+        configMap:
+          name: asterisk-config
