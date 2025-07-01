@@ -27,7 +27,7 @@ spec:
                 topologyKey: "kubernetes.io/hostname"
       containers:
         - name: asterisk
-          image: mlan/asterisk:mini
+          image: asterisk/asterisk:20  # ✅ Updated image
           ports:
             - containerPort: 5060
               protocol: UDP
