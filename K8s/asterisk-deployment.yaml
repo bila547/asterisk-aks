@@ -27,7 +27,7 @@ spec:
                 topologyKey: "kubernetes.io/hostname"
       containers:
         - name: asterisk
-          image: asterisk/asterisk:20.5.1   # ✅ Full-featured image with PJSIP
+          image: asterisk/asterisk:20.5.1
           ports:
             - containerPort: 5060
               protocol: UDP
@@ -39,7 +39,7 @@ spec:
               protocol: UDP
           volumeMounts:
             - name: config
-              mountPath: /srv/etc/asterisk
+              mountPath: /etc/asterisk
       volumes:
         - name: config
           configMap:
