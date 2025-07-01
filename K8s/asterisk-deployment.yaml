@@ -39,7 +39,7 @@ spec:
               protocol: UDP
           volumeMounts:
             - name: config
-              mountPath: /etc/asterisk
+              mountPath: /srv/etc/asterisk
       volumes:
         - name: config
           configMap:
