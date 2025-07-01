@@ -27,7 +27,7 @@ spec:
                 topologyKey: "kubernetes.io/hostname"
       containers:
         - name: asterisk
-          image: asterisk/asterisk:20.5  # ✅ Valid tag available on Docker Hub
+          image: mlan/asterisk:mini
           ports:
             - containerPort: 5060
               protocol: UDP
@@ -39,7 +39,7 @@ spec:
               protocol: UDP
           volumeMounts:
             - name: config
-              mountPath: /etc/asterisk  # ✅ Correct path for config files in official image
+              mountPath: /etc/asterisk
       volumes:
         - name: config
           configMap:
