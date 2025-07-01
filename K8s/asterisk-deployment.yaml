@@ -27,7 +27,7 @@ spec:
                 topologyKey: "kubernetes.io/hostname"
       containers:
         - name: asterisk
-          image: mlan/asterisk:mini  # ✅ Working image with PJSIP
+          image: asterisk/asterisk:20.5.1   # ✅ Full-featured image with PJSIP
           ports:
             - containerPort: 5060
               protocol: UDP
