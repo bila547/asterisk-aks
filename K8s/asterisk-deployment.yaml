@@ -27,7 +27,7 @@ spec:
                 topologyKey: "kubernetes.io/hostname"
       containers:
         - name: asterisk
-          image: ghcr.io/asterisk/asterisk:latest
+          image: asterisk/asterisk:latest
           command: ["/bin/sh", "-c"]
           args:
             - |
