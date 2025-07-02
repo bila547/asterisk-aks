@@ -49,8 +49,7 @@ spec:
               protocol: UDP
           volumeMounts:
             - name: config
-              mountPath: /etc/asterisk/pjsip.conf
-              subPath: pjsip.conf
+              mountPath: /etc/asterisk
       volumes:
         - name: config
           configMap:
