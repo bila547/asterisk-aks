@@ -28,8 +28,16 @@ spec:
       containers:
         - name: asterisk
           image: ghcr.io/asterisk/asterisk:latest
-          command: ["/usr/sbin/asterisk"]
-          args: ["-f", "-vvv"]
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              mkdir -p /var/run/asterisk && \
+              chown -R asterisk:asterisk /var/run/asterisk && \
+              exec /usr/sbin/asterisk -f -vvv
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+            allowPrivilegeEscalation: true
           ports:
             - containerPort: 5060
               protocol: UDP
